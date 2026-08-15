@@ -1,0 +1,40 @@
+/*
+ * Wrapped in @layer base so these defaults sit BELOW Tailwind's
+ * @layer utilities in the cascade — without this, plain (unlayered)
+ * rules like `* { padding: 0 }` beat every Tailwind spacing utility
+ * regardless of source order, since unlayered CSS always wins over
+ * any @layer per the CSS Cascade Layers spec.
+ */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background: #FCFAF8;
+    color: #1a1a1a;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}

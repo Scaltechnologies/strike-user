@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm ls *)",
+      "Bash(where.exe chrome.exe)",
+      "Bash(where.exe msedge.exe)"
+    ]
+  }
+}
