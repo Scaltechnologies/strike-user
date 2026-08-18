@@ -19,6 +19,7 @@ import {
   Wifi,
   BatteryFull,
 } from "lucide-react";
+import { GOOGLE_PLAY_URL } from "../config/links";
 
 const quickActions = [
   { icon: CreditCard, label: "My Card" },
@@ -229,7 +230,9 @@ export default function AppStoreLink() {
               App Store
             </a>
             <a
-              href="#"
+              href={GOOGLE_PLAY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#171310] transition-transform hover:scale-[1.03]"
             >
               <PlayCircle size={18} strokeWidth={2} />

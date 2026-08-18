@@ -7,52 +7,36 @@ const INK = "#F5F1EC";
 
 const TESTIMONIALS = [
   {
-    name: "Priya Nair",
-    role: "Member since 2024",
+    name: "Viswa",
+    role: "Founder, Strike",
     quote:
-      "Strike replaced four different subscriptions I was juggling. One tap to check in anywhere, and the savings alone paid for the plan in the first month.",
-    initials: "PN",
+      "I started Strike because I was tired of juggling a dozen memberships just to enjoy my own city. Watching members open the app and use their pass without a second thought is exactly the experience we set out to build.",
+    initials: "V",
     color: "#FF6B35",
   },
   {
-    name: "Daniel Osei",
-    role: "Plus member",
+    name: "Tarun",
+    role: "Co-founder, Strike",
     quote:
-      "The pause-anytime feature is what sold me. I travel a lot for work, and I'm not paying for venues I can't get to that month.",
-    initials: "DO",
+      "Every partner venue we onboard is proof the model works — predictable revenue for businesses and real value for members. Building that trust from scratch has been the most rewarding part of this journey.",
+    initials: "T",
     color: "#F43F5E",
   },
   {
-    name: "Maya Chen",
-    role: "Premium member",
+    name: "Laya",
+    role: "HR, Strike",
     quote:
-      "Discovering new spots in the app genuinely changed how I spend weekends. The QR check-in is instant — no fumbling with codes or receipts.",
-    initials: "MC",
+      "What makes Strike different is the people behind it. We've built a team that genuinely cares about the member experience, and that shows in how fast we move to fix things and ship what people ask for.",
+    initials: "L",
     color: "#8B5CF6",
   },
   {
-    name: "Arjun Mehta",
-    role: "Member since 2023",
+    name: "Nikhil",
+    role: "Developer, Strike",
     quote:
-      "Customer support actually picks up. Had a billing question at 11pm and it was sorted in minutes through the app chat.",
-    initials: "AM",
+      "Every feature in the app — from the QR check-in to the wallet — was built to feel instant. Shipping something members use every day and hearing back within hours is what makes working on Strike different.",
+    initials: "N",
     color: "#22C55E",
-  },
-  {
-    name: "Sofia Ramirez",
-    role: "Plus member",
-    quote:
-      "I manage three memberships for my family from one wallet now. The digital ID scans faster than any card ever did.",
-    initials: "SR",
-    color: "#EAB308",
-  },
-  {
-    name: "Kenji Watanabe",
-    role: "Premium member",
-    quote:
-      "The exclusive events alone are worth it — got into a tasting menu night that was otherwise fully booked, just for being a member.",
-    initials: "KW",
-    color: "#3B82F6",
   },
 ];
 
@@ -127,11 +111,11 @@ export default function Testimonials() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: INK }}>
-            Loved by thousands{" "}
-            <span style={{ color: BRAND }}>of members.</span>
+            Meet the people{" "}
+            <span style={{ color: BRAND }}>behind Strike.</span>
           </h2>
           <p className="mt-4 text-[#A79E92] text-lg">
-            Real stories from members who made Strike part of their routine.
+            The team building Strike, in their own words.
           </p>
         </motion.div>
       </div>

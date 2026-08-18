@@ -14,7 +14,6 @@ function Home() {
     <>
 
       <Hero />
-      <CurveDivider fill="#ffffff" height={140} />
 
       <Journey />
 
@@ -26,12 +25,9 @@ function Home() {
 
       <Testimonials />
 
-      
-
-     
-      
       <AppStoreLink />
-       <CTA />
+      
+      <CTA />
       <FAQ />
 
       <Footer />

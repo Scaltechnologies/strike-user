@@ -5,24 +5,29 @@ import { motion, useInView, useMotionValue, useMotionTemplate, useSpring } from 
 import forBusiness from "../assets/for-business.jpg";
 import forMembers from "../assets/for-members.jpg";
 import LazyImage from "./LazyImage";
+import { GOOGLE_PLAY_URL, VENDOR_WEBSITE_URL } from "../config/links";
 
 // ---------------------------------------------------------------------------
-// Content
+// Content — members shown first since the public-facing site is member-led;
+// each side links out to its own destination (the member app vs. the
+// business/vendor platform).
 // ---------------------------------------------------------------------------
 const CARDS = [
-  {
-    id: "business",
-    image: forBusiness,
-    title: "For Businesses",
-    description:
-      "Turn one-time visitors into lifelong patrons. STRIKE provides the tools to manage subscriptions, track loyalty, and grow your brand effortlessly.",
-  },
   {
     id: "members",
     image: forMembers,
     title: "For Members",
     description:
-      "Access the best of your city with a single tap. Manage all your memberships in one digital wallet and enjoy exclusive member-only benefits.",
+      "Discover memberships, access benefits, and manage everything in one place.",
+    href: GOOGLE_PLAY_URL,
+  },
+  {
+    id: "business",
+    image: forBusiness,
+    title: "For Businesses",
+    description:
+      "Manage memberships, improve customer engagement, and simplify operations.",
+    href: VENDOR_WEBSITE_URL,
   },
 ];
 
@@ -55,15 +60,26 @@ function BusinessCard({ card, index }) {
   }
 
   return (
-    <motion.div
+    <motion.a
       ref={ref}
+      href={card.href}
+      target="_blank"
+      rel="noopener noreferrer"
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.12, ease: [0.45, 0, 0.2, 1] }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
-      style={{ perspective: 1800, flex: "1 1 0", minWidth: 0, position: "relative" }}
+      style={{
+        perspective: 1800,
+        flex: "1 1 0",
+        minWidth: 0,
+        position: "relative",
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
+      }}
     >
       {/* ambient orange glow, expands and brightens on hover */}
       <motion.div
@@ -143,7 +159,7 @@ function BusinessCard({ card, index }) {
           </p>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.a>
   );
 }
 

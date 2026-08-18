@@ -133,7 +133,7 @@ export default function Journey() {
           width: 100%;
           max-width: 1100px;
           margin: 0 auto;
-          padding: 48px 20px;
+          padding: 16px 20px 48px;
           box-sizing: border-box;
         }
         .sj-head { text-align: center; margin-bottom: 8px; }

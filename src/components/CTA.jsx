@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function CTA() {
   return (
@@ -23,14 +24,13 @@ export default function CTA() {
           Let's transform your customer loyalty today.
         </p>
 
-        <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6 w-full">
-          <button className="bg-white text-[#1A1006] font-semibold px-14 py-3 text-lg rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105">
+        <div className="mt-12 flex justify-center items-center w-full">
+          <Link
+            to="/partner"
+            className="bg-white text-[#1A1006] font-semibold px-14 py-3 text-lg rounded-lg shadow-[0_15px_35px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-105"
+          >
             Become a Partner
-          </button>
-
-          <button className="border-2 border-white text-white font-semibold px-14 py-3 text-lg rounded-lg transition-all duration-300 hover:bg-white hover:text-[#1A1006]">
-            Book a Demo
-          </button>
+          </Link>
         </div>
       </motion.div>
     </section>
