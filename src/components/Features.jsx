@@ -149,7 +149,7 @@ function DefaultPhonePreview() {
           Wallet Balance
         </p>
         <p className="text-[15px] text-white font-bold leading-none">
-          $128.50
+         ₹128.50
         </p>
       </div>
 
