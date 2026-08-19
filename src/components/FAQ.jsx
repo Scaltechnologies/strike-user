@@ -64,7 +64,7 @@ function FAQItem({ item, isOpen, onClick }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-7 pr-12 text-[15.5px] leading-[1.75] text-[#6B6459]">
+            <p className="pb-7 pr-4 text-[15.5px] leading-[1.75] text-[#6B6459] sm:pr-12">
               {item.a}
             </p>
           </motion.div>

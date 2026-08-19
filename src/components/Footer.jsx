@@ -30,10 +30,10 @@ const LINK_COLUMNS = [
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy" },
-      { label: "Terms of Service" },
-      { label: "Cookie Settings" },
-      { label: "Compliance" },
+      { label: "Privacy Policy", to: "/privacy" },
+      { label: "Terms of Service", to: "/terms" },
+      { label: "Cookie Settings", to: "/cookies" },
+      { label: "Compliance", to: "/compliance" },
     ],
   },
 ];

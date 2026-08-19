@@ -73,7 +73,7 @@ function Hero() {
   return (
     <section
       id="categories"
-      className="relative flex min-h-screen w-full items-end justify-start overflow-hidden px-6 pb-20 sm:px-12 sm:pb-24"
+      className="relative flex min-h-[100svh] w-full items-end justify-start overflow-hidden px-6 pb-16 sm:px-12 sm:pb-24"
       style={{
         borderBottomLeftRadius: "50% 90px",
         borderBottomRightRadius: "50% 90px",
@@ -151,7 +151,7 @@ function Hero() {
       <div className="absolute inset-0 bg-black/40" />
 
       <div
-        className={`relative z-10 flex max-w-2xl flex-col items-start gap-5 text-left hero-copy-transition ${
+        className={`relative z-10 flex max-w-2xl flex-col items-start gap-4 text-left hero-copy-transition sm:gap-5 ${
           textVisible
             ? "opacity-100 translate-y-0"
             : "pointer-events-none opacity-0 translate-y-4"
@@ -178,7 +178,7 @@ function Hero() {
       </div>
 
       {/* scroll cue */}
-      <div className="hero-body absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-sm font-medium text-white/80">
+      <div className="hero-body absolute bottom-4 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap text-xs font-medium text-white/80 sm:bottom-8 sm:text-sm">
         Scroll down
         <span className="ml-1 inline-block animate-bounce">⌄</span>
       </div>
