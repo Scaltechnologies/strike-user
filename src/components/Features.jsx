@@ -437,37 +437,11 @@ export default function FeaturesOrbit() {
           </div>
         </div>
 
-        {/* Mobile/tablet layout: the desktop orbit relies on percentage
-            positions that only have breathing room on wide screens, so
-            below md we swap to a centered phone with the same 9 features
-            laid out as a plain, non-overlapping card grid underneath. */}
+        {/* Mobile/tablet layout: below md, we show just the feature grid
+            (no phone mockup — removed per request) as plain,
+            non-overlapping cards. */}
         <div className="relative z-10 flex w-full flex-col items-center md:hidden">
-          <div
-            className="relative mx-auto"
-            style={{
-              width: "clamp(160px, 44vw, 220px)",
-              aspectRatio: "9 / 18.5",
-            }}
-          >
-            <div
-              aria-hidden="true"
-              className="absolute -z-10 rounded-full"
-              style={{
-                inset: "-45%",
-                background:
-                  "radial-gradient(closest-side, rgba(255,150,80,0.55), rgba(255,150,80,0.22) 55%, transparent 75%)",
-                filter: "blur(24px)",
-              }}
-            />
-            <div className="relative w-full h-full rounded-[16%] bg-gradient-to-b from-white to-[#F3F1EE] p-[3.5%] shadow-[0_35px_70px_-15px_rgba(26,16,6,0.28),0_10px_25px_rgba(26,16,6,0.10)] ring-1 ring-black/10">
-              <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[32%] h-[2.5%] bg-[#1A1006] rounded-full z-20 shadow-inner" />
-              <div className="relative w-full h-full bg-white rounded-[13%] overflow-hidden shadow-[inset_0_2px_10px_rgba(0,0,0,0.05)]">
-                <DefaultPhonePreview />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-10 grid w-full max-w-md grid-cols-2 gap-3 sm:grid-cols-3">
+          <div className="grid w-full max-w-md grid-cols-2 gap-3 sm:grid-cols-3">
             {features.map((f) => {
               const Icon = f.icon;
               return (
