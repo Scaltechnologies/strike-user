@@ -37,10 +37,10 @@ function Field({ label, name, value, onChange, error, type = "text", textarea, o
         rows={textarea ? 5 : undefined}
         value={value}
         onChange={onChange}
-        className={`w-full rounded-xl border bg-[#FCFAF8] px-4 py-2.5 text-sm text-[#1A1006] outline-none transition-colors placeholder:text-[#3A2A18]/35 ${
+        className={`w-full rounded-xl border bg-[#FCFAF8] px-4 py-2.5 text-sm text-[#1A1006] outline-none transition-colors placeholder:text-[#3A2A18]/35 focus:ring-2 ${
           error
-            ? "border-[#E4562A]/60 focus:border-[#E4562A]"
-            : "border-[#EFE6DC] focus:border-[#FF6B35]/50"
+            ? "border-[#E4562A]/60 focus:border-[#E4562A] focus:ring-[#E4562A]/25"
+            : "border-[#EFE6DC] focus:border-[#FF6B35]/50 focus:ring-[#FF6B35]/25"
         } ${textarea ? "resize-none" : ""}`}
       />
       {error && (
@@ -92,7 +92,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B35]">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF6B35]">
               Get in touch
             </span>
             <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight text-[#1A1006]">

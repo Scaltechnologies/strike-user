@@ -48,7 +48,6 @@ const SHARED_STYLES = `
     --orange: #e4562a;
     --muted: #8a7d70;
     --gray-circle: #eee6db;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     background: transparent;
     color: var(--ink);
     width: 100%;
@@ -60,7 +59,7 @@ const SHARED_STYLES = `
   .sj-head { text-align: center; margin-bottom: 8px; }
   .sj-h1 {
     font-size: clamp(26px, 3.6vw, 42px);
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.01em;
     margin: 0;
   }
@@ -166,7 +165,7 @@ const SHARED_STYLES = `
   .sj-label-start .sj-label-title { justify-content: flex-start; }
   .sj-label-end .sj-label-title { justify-content: flex-end; }
   .sj-label-title {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 15px;
     display: flex;
     align-items: center;
@@ -175,7 +174,7 @@ const SHARED_STYLES = `
     transition: color 0.35s ease;
   }
   .sj-label-title.hovered { color: var(--orange); }
-  .sj-label-title .sj-num { color: var(--orange); font-weight: 800; }
+  .sj-label-title .sj-num { color: var(--orange); font-weight: 700; }
   .sj-label-desc {
     font-size: 12.5px;
     color: var(--muted);
@@ -245,7 +244,7 @@ function Markers({ markerPoints, activeId }) {
           </div>
         </foreignObject>
         <circle className={`sj-marker-num-bg${isActive ? " hovered" : ""}`} cx="-22" cy="-22" r="11" />
-        <text x="-22" y="-18" textAnchor="middle" fontSize="12" fontWeight="800" fill="#fff">
+        <text x="-22" y="-18" textAnchor="middle" fontSize="12" fontWeight="700" fill="#fff">
           {step.id}
         </text>
       </g>
@@ -401,17 +400,64 @@ function JourneyMobile() {
         ${SHARED_STYLES}
 
         @media (max-width: 640px) {
-          .sj-section { padding-top: 28px; }
+          .sj-section { padding-top: 44px; padding-bottom: 64px; }
           .sj-sub { white-space: normal; }
           .sj-bird { display: none; }
-          .sj-stage { margin-top: 22px; }
-          .sj-label { width: min(112px, 33vw); }
-          .sj-label-title { font-size: 12px; gap: 4px; }
-          .sj-label-desc { font-size: 10px; line-height: 1.3; }
+          .sj-stage { margin-top: 40px; margin-left: -8px; margin-right: -8px; width: calc(100% + 16px); }
         }
 
-        @media (max-width: 400px) {
-          .sj-label-desc { display: none; }
+        /* Mobile-only stacked step list — the road+walker above stays purely
+           decorative on narrow screens; at phone widths the road's S-curve
+           packs markers too close together for readable text to sit next to
+           each one without colliding, so the actual copy lives here instead. */
+        .sj-steps {
+          margin-top: 32px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .sj-step {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding: 14px;
+          border-radius: 16px;
+          transition: background-color 0.3s ease;
+        }
+        .sj-step.active { background-color: rgba(228, 86, 42, 0.07); }
+        .sj-step-badge {
+          flex-shrink: 0;
+          width: 36px;
+          height: 36px;
+          border-radius: 9999px;
+          background: var(--gray-circle);
+          color: #6b5f52;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .sj-step.active .sj-step-badge {
+          background: var(--orange);
+          color: #fff;
+          box-shadow: 0 0 0 6px rgba(228, 86, 42, 0.12);
+        }
+        .sj-step-title {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-weight: 600;
+          font-size: 15.5px;
+          color: var(--ink);
+          transition: color 0.3s ease;
+        }
+        .sj-step.active .sj-step-title { color: var(--orange); }
+        .sj-step-title .sj-num { color: var(--orange); font-weight: 700; }
+        .sj-step-desc {
+          margin-top: 4px;
+          font-size: 13.5px;
+          line-height: 1.55;
+          color: var(--muted);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -450,8 +496,26 @@ function JourneyMobile() {
 
           <Markers markerPoints={markerPoints} activeId={activeId} />
         </svg>
+      </div>
 
-        <Labels markerPoints={markerPoints} activeId={activeId} />
+      <div className="sj-steps">
+        {STEPS.map((step) => {
+          const Icon = step.icon;
+          const isActive = activeId === step.id;
+          return (
+            <div key={step.id} className={`sj-step${isActive ? " active" : ""}`}>
+              <div className="sj-step-badge">
+                <Icon size={16} strokeWidth={2.2} />
+              </div>
+              <div>
+                <p className="sj-step-title">
+                  <span className="sj-num">{step.id}</span> {step.title}
+                </p>
+                <p className="sj-step-desc">{step.desc}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -651,7 +715,7 @@ function JourneyDesktop() {
                     </div>
                   </foreignObject>
                   <circle className={`sj-marker-num-bg${isHovered ? " hovered" : ""}`} cx="-22" cy="-22" r="11" />
-                  <text x="-22" y="-18" textAnchor="middle" fontSize="12" fontWeight="800" fill="#fff">
+                  <text x="-22" y="-18" textAnchor="middle" fontSize="12" fontWeight="700" fill="#fff">
                     {step.id}
                   </text>
                 </g>

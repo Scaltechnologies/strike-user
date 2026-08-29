@@ -19,82 +19,90 @@ import {
 // the last approved composition.
 const features = [
   {
-    icon: MapPin,
-    title: "1000+",
-    description: "Premium Venues",
-    color: "#FF5A2C",
+    icon: Users,
+    title: "All Memberships",
+    description: "in One Place",
+    color: "#EC4899",
     pos: { top: "6%", left: "50%" },
     rotate: 0,
     scale: 1.08,
   },
+
   {
-    icon: QrCode,
-    title: "QR Check-ins",
-    description: "& Redemptions",
-    color: "#8B5CF6",
+    icon: MapPin,
+    title: "1000+",
+    description: "Premium Venues",
+    color: "#FF5A2C",
     pos: { top: "11%", left: "30%" },
     rotate: -9,
     scale: 1,
   },
-  {
-    icon: Wallet,
-    title: "All in One",
-    description: "Digital Wallet",
-    color: "#F97316",
-    pos: { top: "11%", left: "70%" },
-    rotate: 9,
-    scale: 1,
-  },
+
   {
     icon: PiggyBank,
     title: "Up to 40%",
     description: "Savings",
     color: "#F43F5E",
+    pos: { top: "11%", left: "70%" },
+    rotate: 9,
+    scale: 1,
+  },
+
+  {
+    icon: QrCode,
+    title: "QR Check-ins",
+    description: "& Redemptions",
+    color: "#8B5CF6",
     pos: { top: "31%", left: "13%" },
     rotate: -15,
     scale: 1,
   },
+
+  {
+    icon: Wallet,
+    title: "All in One",
+    description: "Digital Wallet",
+    color: "#F97316",
+    pos: { top: "31%", left: "87%" },
+    rotate: 15,
+    scale: 1,
+  },
+
   {
     icon: RefreshCw,
     title: "Pause or Cancel",
     description: "Anytime",
     color: "#F59E0B",
-    pos: { top: "31%", left: "87%" },
-    rotate: 15,
+    pos: { top: "60%", left: "8%" },
+    rotate: -11,
     scale: 1,
   },
+
   {
     icon: BarChart3,
     title: "Real-time Usage",
     description: "Analytics",
     color: "#3B82F6",
-    pos: { top: "60%", left: "8%" },
-    rotate: -11,
+    pos: { top: "60%", left: "92%" },
+    rotate: 11,
     scale: 1,
   },
+
   {
     icon: Headphones,
     title: "24/7 Member",
     description: "Support",
     color: "#22C55E",
-    pos: { top: "60%", left: "92%" },
-    rotate: 11,
-    scale: 1,
+    pos: { top: "80%", left: "20%" },
+    rotate: -7,
+    scale: 0.96,
   },
+
   {
     icon: Award,
     title: "Exclusive Events",
     description: "& Invites",
     color: "#EAB308",
-    pos: { top: "80%", left: "20%" },
-    rotate: -7,
-    scale: 0.96,
-  },
-  {
-    icon: Users,
-    title: "All Memberships",
-    description: "in One Place",
-    color: "#EC4899",
     pos: { top: "80%", left: "80%" },
     rotate: 7,
     scale: 0.96,
@@ -250,7 +258,7 @@ export default function FeaturesOrbit() {
         <div className="relative z-10 max-w-2xl mx-auto text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-3 text-[#FF6B35]">
             <Sparkles className="w-3.5 h-3.5" strokeWidth={2} />
-            <span className="text-xs font-bold tracking-[0.25em] uppercase">Strike</span>
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase">Strike</span>
             <Sparkles className="w-3.5 h-3.5" strokeWidth={2} />
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A1006] leading-[1.08] tracking-tight">
@@ -456,7 +464,7 @@ export default function FeaturesOrbit() {
                     <Icon className="w-5 h-5" style={{ color: f.color }} strokeWidth={2} />
                   </div>
                   <div>
-                    <p className="text-xs font-bold leading-tight text-[#1A1006]">{f.title}</p>
+                    <p className="text-xs font-semibold leading-tight text-[#1A1006]">{f.title}</p>
                     <p className="text-[10.5px] leading-tight text-[#3A2A18]/65">
                       {f.description}
                     </p>

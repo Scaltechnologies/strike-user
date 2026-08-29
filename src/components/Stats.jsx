@@ -39,7 +39,7 @@ export default function Stats() {
                   {stat.value}
                 </h2>
 
-                <p className="mt-3 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.28em] text-[#6B6B6B]">
+                <p className="mt-3 text-[10px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-[#6B6B6B]">
                   {stat.label}
                 </p>
               </motion.div>

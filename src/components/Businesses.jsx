@@ -133,12 +133,12 @@ function BusinessCard({ card, index }) {
           <LazyImage
             src={card.image}
             alt={card.title}
-            className="mb-7 h-32 w-full max-w-[12rem] rounded-[1rem] sm:h-[8.5rem]"
+            className="mb-7 h-36 w-full max-w-[13rem] rounded-[1rem] sm:h-40"
             imgClassName="rounded-[1rem]"
           />
           <h3
             className="text-2xl sm:text-3xl"
-            style={{ marginBottom: "0.9rem", fontWeight: 700, letterSpacing: "-0.01em", color: "#171717" }}
+            style={{ marginBottom: "0.9rem", fontWeight: 600, letterSpacing: "-0.01em", color: "#171717" }}
           >
             {card.title}
           </h3>
@@ -148,7 +148,6 @@ function BusinessCard({ card, index }) {
               fontSize: "0.975rem",
               lineHeight: 1.7,
               color: "#737373",
-              fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
             }}
           >
             {card.description}
@@ -174,8 +173,7 @@ function CurvedHeading({ text }) {
         textAnchor="middle"
         style={{
           fill: "#171717",
-          fontWeight: 800,
-          fontFamily: "'Georgia', 'Iowan Old Style', 'Times New Roman', serif",
+          fontWeight: 700,
           letterSpacing: "-0.01em",
         }}
       >
@@ -198,8 +196,8 @@ export default function Businesses() {
         background: "#ffffff",
         paddingTop: "clamp(2rem, 6vw, 3rem)",
         paddingBottom: "clamp(3.5rem, 10vw, 6rem)",
-        paddingLeft: "1.25rem",
-        paddingRight: "1.25rem",
+        paddingLeft: "clamp(1.25rem, 5vw, 2rem)",
+        paddingRight: "clamp(1.25rem, 5vw, 2rem)",
         boxSizing: "border-box",
         overflow: "hidden",
       }}

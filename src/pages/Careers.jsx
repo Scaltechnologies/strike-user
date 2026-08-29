@@ -39,7 +39,7 @@ export default function Careers() {
 
       <section className="px-6 pt-10 pb-6 sm:pt-16">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B35]">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF6B35]">
             Careers
           </span>
           <h1 className="mt-4 text-4xl sm:text-5xl font-bold leading-[1.1] tracking-tight text-[#1A1006]">

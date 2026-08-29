@@ -19,7 +19,7 @@ export default function CurveDivider({
         ["--curve-mobile-height"]: `${mobileHeight}px`,
       }}
     >
-      <style jsx>{`
+      <style>{`
         @media (max-width: 767px) {
           .curve-divider {
             height: var(--curve-mobile-height) !important;

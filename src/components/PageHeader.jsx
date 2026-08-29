@@ -7,7 +7,7 @@ export default function PageHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Link
           to="/"
-          className="flex items-center gap-1.5 text-xl font-black tracking-tight text-[#1A1006]"
+          className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-[#1A1006]"
         >
           <Zap size={18} className="fill-[#FF6B35] text-[#FF6B35]" />
           STRIKE
