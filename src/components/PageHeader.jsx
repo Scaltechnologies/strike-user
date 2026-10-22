@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Zap } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import StrikeLogo from "./StrikeLogo";
 
 export default function PageHeader() {
   return (
@@ -9,7 +10,7 @@ export default function PageHeader() {
           to="/"
           className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-[#1A1006]"
         >
-          <Zap size={18} className="fill-[#FF6B35] text-[#FF6B35]" />
+          <StrikeLogo className="h-5" />
           STRIKE
         </Link>
         <Link
