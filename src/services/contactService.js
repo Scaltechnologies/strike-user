@@ -1,23 +1,34 @@
-// Contact form service layer — mock implementation.
+// Contact form service layer.
 //
-// There's no backend wired up yet, so this simulates a network call and
-// resolves successfully for well-formed submissions. Replace the body of
-// `submitContactForm` with a real API call once a backend endpoint exists;
-// the Contact page only depends on this function's shape (a Promise that
-// resolves or rejects), not on how it's implemented.
+// There is no backend endpoint for contact messages, so the form hands the
+// message to the visitor's own email app via a mailto: link addressed to the
+// support inbox. Nothing is sent until the visitor presses Send in that app,
+// and the UI says so. Replace this with a real API call once a backend
+// endpoint exists — and only then show a "message sent" confirmation.
+
+import { CONTACT_EMAIL } from "../config/links";
 
 /**
  * @param {{ name: string, email: string, phone: string, subject: string, message: string }} data
- * @returns {Promise<{ ok: true }>}
+ * @returns {{ to: string, subject: string, body: string, mailto: string }}
  */
-export function submitContactForm(data) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (!data.name || !data.email || !data.subject || !data.message) {
-        reject(new Error("Missing required fields"));
-        return;
-      }
-      resolve({ ok: true });
-    }, 700 + Math.random() * 500);
-  });
+export function buildContactEmail(data) {
+  const subject = `[Website enquiry] ${data.subject.trim()}`;
+  const body = [
+    data.message.trim(),
+    "",
+    "—",
+    `Name: ${data.name.trim()}`,
+    `Email: ${data.email.trim()}`,
+    data.phone.trim() ? `Phone: ${data.phone.trim()}` : null,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
+  return {
+    to: CONTACT_EMAIL,
+    subject,
+    body,
+    mailto: `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+  };
 }

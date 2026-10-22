@@ -11,12 +11,15 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 import Compliance from "./pages/Compliance";
+import DeleteAccount from "./pages/DeleteAccount";
+import NotFound from "./pages/NotFound";
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // Leave hash links (e.g. /privacy#account-deletion) to the page itself.
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
   return null;
 }
 
@@ -36,6 +39,8 @@ function App() {
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/cookies" element={<CookiePolicy />} />
         <Route path="/compliance" element={<Compliance />} />
+        <Route path="/delete-account" element={<DeleteAccount />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
