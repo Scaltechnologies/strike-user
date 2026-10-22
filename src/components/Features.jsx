@@ -19,82 +19,90 @@ import {
 // the last approved composition.
 const features = [
   {
-    icon: MapPin,
-    title: "1000+",
-    description: "Premium Venues",
-    color: "#FF5A2C",
+    icon: Users,
+    title: "All Memberships",
+    description: "in One Place",
+    color: "#EC4899",
     pos: { top: "6%", left: "50%" },
     rotate: 0,
     scale: 1.08,
   },
+
   {
-    icon: QrCode,
-    title: "QR Check-ins",
-    description: "& Redemptions",
-    color: "#8B5CF6",
+    icon: MapPin,
+    title: "1000+",
+    description: "Premium Venues",
+    color: "#FF5A2C",
     pos: { top: "11%", left: "30%" },
     rotate: -9,
     scale: 1,
   },
-  {
-    icon: Wallet,
-    title: "All in One",
-    description: "Digital Wallet",
-    color: "#F97316",
-    pos: { top: "11%", left: "70%" },
-    rotate: 9,
-    scale: 1,
-  },
+
   {
     icon: PiggyBank,
     title: "Up to 40%",
     description: "Savings",
     color: "#F43F5E",
+    pos: { top: "11%", left: "70%" },
+    rotate: 9,
+    scale: 1,
+  },
+
+  {
+    icon: QrCode,
+    title: "QR Check-ins",
+    description: "& Redemptions",
+    color: "#8B5CF6",
     pos: { top: "31%", left: "13%" },
     rotate: -15,
     scale: 1,
   },
+
+  {
+    icon: Wallet,
+    title: "All in One",
+    description: "Digital Wallet",
+    color: "#F97316",
+    pos: { top: "31%", left: "87%" },
+    rotate: 15,
+    scale: 1,
+  },
+
   {
     icon: RefreshCw,
     title: "Pause or Cancel",
     description: "Anytime",
     color: "#F59E0B",
-    pos: { top: "31%", left: "87%" },
-    rotate: 15,
+    pos: { top: "60%", left: "8%" },
+    rotate: -11,
     scale: 1,
   },
+
   {
     icon: BarChart3,
     title: "Real-time Usage",
     description: "Analytics",
     color: "#3B82F6",
-    pos: { top: "60%", left: "8%" },
-    rotate: -11,
+    pos: { top: "60%", left: "92%" },
+    rotate: 11,
     scale: 1,
   },
+
   {
     icon: Headphones,
     title: "24/7 Member",
     description: "Support",
     color: "#22C55E",
-    pos: { top: "60%", left: "92%" },
-    rotate: 11,
-    scale: 1,
+    pos: { top: "80%", left: "20%" },
+    rotate: -7,
+    scale: 0.96,
   },
+
   {
     icon: Award,
     title: "Exclusive Events",
     description: "& Invites",
     color: "#EAB308",
-    pos: { top: "80%", left: "20%" },
-    rotate: -7,
-    scale: 0.96,
-  },
-  {
-    icon: Users,
-    title: "All Memberships",
-    description: "in One Place",
-    color: "#EC4899",
     pos: { top: "80%", left: "80%" },
     rotate: 7,
     scale: 0.96,
@@ -149,7 +157,7 @@ function DefaultPhonePreview() {
           Wallet Balance
         </p>
         <p className="text-[15px] text-white font-bold leading-none">
-          $128.50
+         ₹128.50
         </p>
       </div>
 
@@ -219,7 +227,7 @@ export default function FeaturesOrbit() {
   const [activeFeature, setActiveFeature] = useState(null);
 
   return (
-    <section className="relative w-full pt-12 pb-0 overflow-hidden">
+    <section className="relative w-full pt-12 pb-12 md:pb-0 overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute inset-0"
@@ -250,7 +258,7 @@ export default function FeaturesOrbit() {
         <div className="relative z-10 max-w-2xl mx-auto text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-3 text-[#FF6B35]">
             <Sparkles className="w-3.5 h-3.5" strokeWidth={2} />
-            <span className="text-xs font-bold tracking-[0.25em] uppercase">Strike</span>
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase">Strike</span>
             <Sparkles className="w-3.5 h-3.5" strokeWidth={2} />
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A1006] leading-[1.08] tracking-tight">
@@ -266,8 +274,11 @@ export default function FeaturesOrbit() {
         </div>
 
         {/* Wide, shallow arc box: everything below is positioned with
-            top/left percentages against this box. */}
-        <div className="relative w-full max-w-3xl aspect-[972/560]">
+            top/left percentages against this box. Percentage-based orbit
+            positions only have room to breathe above the tablet breakpoint
+            — below that we swap to a stacked phone + card-grid layout
+            (mobile block just below) instead of shrinking this in place. */}
+        <div className="relative hidden w-full max-w-3xl aspect-[972/560] md:block">
           {/* Dotted necklace strung through every card, bottom-left to
               bottom-right over the top — round-dot dashes, not a solid line. */}
           <svg
@@ -431,6 +442,36 @@ export default function FeaturesOrbit() {
                 </AnimatePresence>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Mobile/tablet layout: below md, we show just the feature grid
+            (no phone mockup — removed per request) as plain,
+            non-overlapping cards. */}
+        <div className="relative z-10 flex w-full flex-col items-center md:hidden">
+          <div className="grid w-full max-w-md grid-cols-2 gap-3 sm:grid-cols-3">
+            {features.map((f) => {
+              const Icon = f.icon;
+              return (
+                <div
+                  key={f.title + f.description}
+                  className="flex flex-col items-center gap-2 rounded-2xl bg-white px-3 py-4 text-center shadow-[0_8px_20px_rgba(26,16,6,0.06)] ring-1 ring-black/5"
+                >
+                  <div
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+                    style={{ backgroundColor: `${f.color}1F` }}
+                  >
+                    <Icon className="w-5 h-5" style={{ color: f.color }} strokeWidth={2} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold leading-tight text-[#1A1006]">{f.title}</p>
+                    <p className="text-[10.5px] leading-tight text-[#3A2A18]/65">
+                      {f.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

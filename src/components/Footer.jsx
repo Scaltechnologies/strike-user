@@ -30,10 +30,11 @@ const LINK_COLUMNS = [
   {
     title: "Legal",
     links: [
-      { label: "Privacy Policy" },
-      { label: "Terms of Service" },
-      { label: "Cookie Settings" },
-      { label: "Compliance" },
+      { label: "Privacy Policy", to: "/privacy" },
+      { label: "Terms & Conditions", to: "/terms" },
+      { label: "Cookie Policy", to: "/cookies" },
+      { label: "Compliance", to: "/compliance" },
+      { label: "Delete Account", to: "/delete-account" },
     ],
   },
 ];
@@ -51,7 +52,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-6">
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-2 lg:pr-10">
-            <Link to="/" className="text-2xl font-black tracking-tight text-white">
+            <Link to="/" className="text-2xl font-bold tracking-tight text-white">
               STRIKE
             </Link>
             <p className="mt-3 text-sm font-semibold text-[#FF6B35]">
@@ -77,7 +78,7 @@ export default function Footer() {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-[8px] bg-white/5 transition-colors hover:bg-white/10"
+                  className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-white/5 transition-colors hover:bg-white/10"
                 >
                   <Icon size={15} />
                 </a>

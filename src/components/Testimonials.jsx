@@ -102,7 +102,7 @@ export default function Testimonials() {
       className="w-full py-24"
       style={{ background: "#0B0B0E" }}
     >
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,17 +121,17 @@ export default function Testimonials() {
       </div>
 
       <div
-        className="relative mt-16"
+        className="relative mt-12 sm:mt-16"
         style={{
           maskImage:
-            "linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%)",
+            "linear-gradient(to right, transparent 0, black min(64px,10vw), black calc(100% - min(64px,10vw)), transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0, black 64px, black calc(100% - 64px), transparent 100%)",
+            "linear-gradient(to right, transparent 0, black min(64px,10vw), black calc(100% - min(64px,10vw)), transparent 100%)",
         }}
       >
         <div
           ref={trackRef}
-          className="flex gap-6 overflow-x-scroll px-6 pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-5 overflow-x-scroll px-6 pb-2 sm:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           style={{ cursor: "grab" }}
           onMouseEnter={() => (hoveredRef.current = true)}
           onMouseLeave={() => (hoveredRef.current = false)}
@@ -139,7 +139,7 @@ export default function Testimonials() {
           {CARDS.map((t, i) => (
             <div
               key={`${t.name}-${i}`}
-              className="flex w-[360px] shrink-0 flex-col rounded-[20px] p-8"
+              className="flex w-[82vw] max-w-[340px] shrink-0 flex-col rounded-[20px] p-6 sm:w-[360px] sm:max-w-none sm:p-8"
               style={{
                 background: "#151318",
                 border: "1px solid rgba(255,255,255,0.08)",

@@ -73,19 +73,13 @@ function Hero() {
   return (
     <section
       id="categories"
-      className="relative flex min-h-screen w-full items-end justify-start overflow-hidden px-6 pb-20 sm:px-12 sm:pb-24"
+      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-6 py-16 sm:px-12 sm:py-20 lg:py-24"
       style={{
         borderBottomLeftRadius: "50% 90px",
         borderBottomRightRadius: "50% 90px",
       }}
     >
-      {/* Fonts for this section only. Move to index.html <head> for production. */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600&display=swap');
-
-        .hero-display { font-family: 'Unbounded', sans-serif; }
-        .hero-body { font-family: 'Manrope', sans-serif; }
-
         .hero-text-shadow {
           text-shadow:
             0 1px 0 rgba(0,0,0,0.35),
@@ -110,7 +104,7 @@ function Hero() {
         }
 
         .hero-heading {
-          font-size: clamp(2rem, 1.2rem + 3.5vw, 3.8rem);
+          font-size: clamp(2rem, 1.2rem + 3.5vw, 4rem);
         }
 
         /* The source video carries a day-label overlay in the top-left
@@ -151,17 +145,17 @@ function Hero() {
       <div className="absolute inset-0 bg-black/40" />
 
       <div
-        className={`relative z-10 flex max-w-2xl flex-col items-start gap-5 text-left hero-copy-transition ${
+        className={`relative z-10 flex max-w-2xl flex-col items-center gap-4 text-center hero-copy-transition sm:gap-5 ${
           textVisible
             ? "opacity-100 translate-y-0"
             : "pointer-events-none opacity-0 translate-y-4"
         }`}
       >
-        <span className="hero-body rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-[#FF6B35] shadow-sm">
+        <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#FF6B35] shadow-sm">
           Strike
         </span>
 
-        <h1 className="hero-display hero-heading hero-text-shadow font-bold leading-[1.05] tracking-tight text-white">
+        <h1 className="hero-heading hero-text-shadow font-bold leading-[1.05] tracking-tight text-white">
           <AnimatedText text="Memberships you love." playKey={playKey} />
           <br />
           <AnimatedText
@@ -172,13 +166,13 @@ function Hero() {
           />
         </h1>
 
-        <p className="hero-body hero-text-shadow max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
+        <p className="hero-text-shadow max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
           Your favorite memberships, all in one place.
         </p>
       </div>
 
       {/* scroll cue */}
-      <div className="hero-body absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-sm font-medium text-white/80">
+      <div className="absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-10 -translate-x-1/2 whitespace-nowrap text-xs font-medium text-white/80 sm:bottom-8 sm:text-sm">
         Scroll down
         <span className="ml-1 inline-block animate-bounce">⌄</span>
       </div>

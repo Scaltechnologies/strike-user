@@ -3,14 +3,29 @@ export default function CurveDivider({
   backdrop = "transparent",
   flip = false,
   height = 120,
+  mobileHeight = 40,
   className = "",
 }) {
   return (
     <div
       aria-hidden="true"
-      className={`relative w-full leading-[0] ${className}`}
-      style={{ height, marginTop: -1, marginBottom: -1, background: backdrop }}
+      className={`curve-divider relative w-full leading-[0] ${className}`}
+      style={{
+        height,
+        marginTop: -1,
+        marginBottom: -1,
+        background: backdrop,
+        // CSS variable so media query below can use it
+        ["--curve-mobile-height"]: `${mobileHeight}px`,
+      }}
     >
+      <style>{`
+        @media (max-width: 767px) {
+          .curve-divider {
+            height: var(--curve-mobile-height) !important;
+          }
+        }
+      `}</style>
       <svg
         viewBox="0 0 1440 120"
         preserveAspectRatio="none"

@@ -48,7 +48,7 @@ function FAQItem({ item, isOpen, onClick }) {
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors"
           style={{ backgroundColor: isOpen ? BRAND : "#FDEDE6" }}
         >
           <Plus size={17} color={isOpen ? "white" : BRAND} />
@@ -64,7 +64,7 @@ function FAQItem({ item, isOpen, onClick }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-7 pr-12 text-[15.5px] leading-[1.75] text-[#6B6459]">
+            <p className="pb-7 pr-4 text-[15.5px] leading-[1.75] text-[#6B6459] sm:pr-12">
               {item.a}
             </p>
           </motion.div>
@@ -79,7 +79,7 @@ export default function FAQ() {
 
   return (
     <section className="w-full bg-[#FCFAF8] py-24 px-6">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-[0.85fr_1.15fr]">
           {/* Left: heading + supporting copy, sticky on desktop */}
           <motion.div
@@ -90,7 +90,7 @@ export default function FAQ() {
             className="lg:sticky lg:top-28 lg:self-start"
           >
             <span
-              className="text-xs font-bold uppercase tracking-[0.25em]"
+              className="text-xs font-semibold uppercase tracking-[0.25em]"
               style={{ color: BRAND }}
             >
               Support

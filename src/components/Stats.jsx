@@ -14,18 +14,18 @@ const stats = [
     label: "Memberships",
   },
   {
-    value: "95%",
-    label: "Happy",
+    value: "100%",
+    label: "Digital",
   },
 ];
 
 export default function Stats() {
   return (
-    <section id="about" className="w-full bg-[#FCFAF8] py-24">
+    <section id="about" className="w-full bg-[#FCFAF8] py-16 sm:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Center the entire stats block */}
         <div className="flex justify-center">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-36 lg:gap-x-28 gap-y-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 sm:gap-x-16 lg:gap-x-28 gap-y-10 sm:gap-y-12">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -33,13 +33,13 @@ export default function Stats() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="max-w-[9rem] sm:max-w-none text-center"
               >
-                <h2 className="text-[44px] lg:text-[56px] font-bold leading-none text-[#AC2D00]">
+                <h2 className="text-[clamp(26px,7vw,56px)] font-bold leading-none text-[#AC2D00] break-words">
                   {stat.value}
                 </h2>
 
-                <p className="mt-3 text-[11px] uppercase tracking-[0.28em] text-[#6B6B6B]">
+                <p className="mt-3 text-[10px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-[#6B6B6B]">
                   {stat.label}
                 </p>
               </motion.div>

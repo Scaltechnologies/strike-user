@@ -71,10 +71,9 @@ function BusinessCard({ card, index }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
+      className="w-full sm:flex-1 sm:min-w-0"
       style={{
         perspective: 1800,
-        flex: "1 1 0",
-        minWidth: 0,
         position: "relative",
         display: "block",
         textDecoration: "none",
@@ -128,22 +127,19 @@ function BusinessCard({ card, index }) {
         />
 
         <div
-          style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-            padding: "3rem 2rem",
-          }}
+          className="flex flex-col items-center px-6 py-9 text-center sm:px-8 sm:py-12"
+          style={{ position: "relative" }}
         >
           <LazyImage
             src={card.image}
             alt={card.title}
-            className="mb-7 h-[8.5rem] w-[12rem] rounded-[1rem]"
+            className="mb-7 h-36 w-full max-w-[13rem] rounded-[1rem] sm:h-40"
             imgClassName="rounded-[1rem]"
           />
-          <h3 style={{ marginBottom: "0.9rem", fontSize: "1.85rem", fontWeight: 700, letterSpacing: "-0.01em", color: "#171717" }}>
+          <h3
+            className="text-2xl sm:text-3xl"
+            style={{ marginBottom: "0.9rem", fontWeight: 600, letterSpacing: "-0.01em", color: "#171717" }}
+          >
             {card.title}
           </h3>
           <p
@@ -152,7 +148,6 @@ function BusinessCard({ card, index }) {
               fontSize: "0.975rem",
               lineHeight: 1.7,
               color: "#737373",
-              fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
             }}
           >
             {card.description}
@@ -178,8 +173,7 @@ function CurvedHeading({ text }) {
         textAnchor="middle"
         style={{
           fill: "#171717",
-          fontWeight: 800,
-          fontFamily: "'Georgia', 'Iowan Old Style', 'Times New Roman', serif",
+          fontWeight: 700,
           letterSpacing: "-0.01em",
         }}
       >
@@ -200,10 +194,10 @@ export default function Businesses() {
         display: "flex",
         justifyContent: "center",
         background: "#ffffff",
-        paddingTop: "3rem",
-        paddingBottom: "6rem",
-        paddingLeft: "1.5rem",
-        paddingRight: "1.5rem",
+        paddingTop: "clamp(2rem, 6vw, 3rem)",
+        paddingBottom: "clamp(3.5rem, 10vw, 6rem)",
+        paddingLeft: "clamp(1.25rem, 5vw, 2rem)",
+        paddingRight: "clamp(1.25rem, 5vw, 2rem)",
         boxSizing: "border-box",
         overflow: "hidden",
       }}
@@ -233,16 +227,7 @@ export default function Businesses() {
           revenue and customers get unparalleled value and convenience.
         </p>
 
-        <div
-          style={{
-            marginTop: "4rem",
-            width: "100%",
-            display: "flex",
-            flexWrap: "nowrap",
-            justifyContent: "center",
-            gap: "2.5rem",
-          }}
-        >
+        <div className="mt-10 flex w-full flex-col items-stretch justify-center gap-6 sm:mt-16 sm:flex-row sm:gap-10">
           {CARDS.map((card, i) => (
             <BusinessCard key={card.id} card={card} index={i} />
           ))}

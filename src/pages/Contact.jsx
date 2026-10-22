@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, MessageCircle, CheckCircle2, AlertCircle, Send } from "lucide-react";
+import { Mail, MessageCircle, AlertCircle, Send } from "lucide-react";
 import PageHeader from "../components/PageHeader";
 import Footer from "../components/Footer";
+import CopyButton from "../components/CopyButton";
 import { CONTACT_EMAIL } from "../config/links";
-import { submitContactForm } from "../services/contactService";
+import { buildContactEmail } from "../services/contactService";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const EMPTY_FORM = { name: "", email: "", phone: "", subject: "", message: "" };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -37,10 +40,10 @@ function Field({ label, name, value, onChange, error, type = "text", textarea, o
         rows={textarea ? 5 : undefined}
         value={value}
         onChange={onChange}
-        className={`w-full rounded-xl border bg-[#FCFAF8] px-4 py-2.5 text-sm text-[#1A1006] outline-none transition-colors placeholder:text-[#3A2A18]/35 ${
+        className={`w-full rounded-xl border bg-[#FCFAF8] px-4 py-2.5 text-sm text-[#1A1006] outline-none transition-colors placeholder:text-[#3A2A18]/35 focus:ring-2 ${
           error
-            ? "border-[#E4562A]/60 focus:border-[#E4562A]"
-            : "border-[#EFE6DC] focus:border-[#FF6B35]/50"
+            ? "border-[#E4562A]/60 focus:border-[#E4562A] focus:ring-[#E4562A]/25"
+            : "border-[#EFE6DC] focus:border-[#FF6B35]/50 focus:ring-[#FF6B35]/25"
         } ${textarea ? "resize-none" : ""}`}
       />
       {error && (
@@ -56,7 +59,11 @@ function Field({ label, name, value, onChange, error, type = "text", textarea, o
 export default function Contact() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  // "handoff" = the message was passed to the visitor's email app; it has not
+  // been sent to STRIKE unless they press Send there.
+  const [status, setStatus] = useState("idle"); // idle | handoff
+  const [email, setEmail] = useState(null);
+  useDocumentTitle("Contact");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -64,20 +71,17 @@ export default function Contact() {
     if (errors[name]) setErrors((er) => ({ ...er, [name]: undefined }));
   }
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     const fieldErrors = validate(form);
     setErrors(fieldErrors);
     if (Object.keys(fieldErrors).length > 0) return;
 
-    setStatus("submitting");
-    try {
-      await submitContactForm(form);
-      setStatus("success");
-      setForm(EMPTY_FORM);
-    } catch {
-      setStatus("error");
-    }
+    // Keep the form contents so the visitor can edit or retry.
+    const built = buildContactEmail(form);
+    setEmail(built);
+    setStatus("handoff");
+    window.location.href = built.mailto;
   }
 
   return (
@@ -92,7 +96,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B35]">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF6B35]">
               Get in touch
             </span>
             <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight text-[#1A1006]">
@@ -108,11 +112,11 @@ export default function Contact() {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFF3E9]">
                   <Mail size={17} className="text-[#FF6B35]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-semibold text-[#1A1006]">Email us</p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="text-sm text-[#3A2A18]/70 transition-colors hover:text-[#FF6B35]"
+                    className="break-all text-sm text-[#3A2A18]/70 transition-colors hover:text-[#FF6B35]"
                   >
                     {CONTACT_EMAIL}
                   </a>
@@ -124,12 +128,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-[#1A1006]">Prefer live help?</p>
-                  <a
-                    href="/support"
+                  <Link
+                    to="/support"
                     className="text-sm text-[#3A2A18]/70 transition-colors hover:text-[#FF6B35]"
                   >
                     Visit our Support Hub
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -142,22 +146,46 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="rounded-[1.75rem] border border-[#EFE6DC] bg-white p-6 shadow-[0_20px_50px_rgba(26,16,6,0.06)] sm:p-8"
           >
-            {status === "success" ? (
-              <div className="flex flex-col items-center py-10 text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#E9F7EF]">
-                  <CheckCircle2 size={28} className="text-[#22C55E]" />
+            {status === "handoff" && email ? (
+              <div className="flex flex-col items-center py-6 text-center" role="status">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#FFF3E9]">
+                  <Mail size={26} className="text-[#FF6B35]" />
                 </div>
-                <p className="mt-5 text-lg font-bold text-[#1A1006]">Message sent!</p>
-                <p className="mt-2 max-w-xs text-sm text-[#3A2A18]/65">
-                  Thanks for reaching out — our team will get back to you soon.
+                <p className="mt-5 text-lg font-bold text-[#1A1006]">Finish sending in your email app</p>
+                <p className="mt-2 max-w-sm text-sm leading-relaxed text-[#3A2A18]/70">
+                  We've opened your email app with your message ready to send.{" "}
+                  <strong className="font-semibold text-[#1A1006]">
+                    Your message reaches us only after you press Send there.
+                  </strong>
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setStatus("idle")}
-                  className="mt-6 rounded-xl bg-[#FF6B35] px-6 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
-                >
-                  Send another message
-                </button>
+
+                <div className="mt-6 w-full rounded-2xl border border-[#EFE6DC] bg-[#FCFAF8] p-4 text-left">
+                  <p className="text-sm font-semibold text-[#1A1006]">No email app opened?</p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#3A2A18]/70">
+                    Copy your message and email it to{" "}
+                    <span className="break-all font-semibold text-[#1A1006] select-all">{email.to}</span>.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <CopyButton text={email.to} label="Copy email address" />
+                    <CopyButton text={`Subject: ${email.subject}\n\n${email.body}`} label="Copy message" />
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                  <a
+                    href={email.mailto}
+                    className="rounded-xl bg-[#FF6B35] px-6 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
+                  >
+                    Open email app again
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className="rounded-xl border border-[#EFE6DC] px-6 py-2.5 text-sm font-semibold text-[#3A2A18]/80 transition-colors hover:border-[#FF6B35]/50 hover:text-[#FF6B35]"
+                  >
+                    Edit message
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
@@ -171,27 +199,21 @@ export default function Contact() {
                 </div>
                 <Field label="Message" name="message" value={form.message} onChange={handleChange} error={errors.message} textarea />
 
-                {status === "error" && (
-                  <div className="flex items-center gap-2 rounded-xl bg-[#FDECEA] px-4 py-3 text-sm text-[#8A2E22]">
-                    <AlertCircle size={15} />
-                    Something went wrong sending your message. Please try again.
-                  </div>
-                )}
-
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
-                  className="mt-1 flex items-center justify-center gap-2 rounded-xl bg-[#FF6B35] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(255,107,53,0.3)] transition-transform hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100"
+                  className="mt-1 flex items-center justify-center gap-2 rounded-xl bg-[#FF6B35] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_35px_rgba(255,107,53,0.3)] transition-transform hover:scale-[1.02]"
                 >
-                  {status === "submitting" ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      <Send size={15} />
-                      Send message
-                    </>
-                  )}
+                  <Send size={15} />
+                  Continue in your email app
                 </button>
+                <p className="-mt-1 text-center text-xs leading-relaxed text-[#3A2A18]/55">
+                  This opens your email app with your message addressed to {CONTACT_EMAIL}.
+                  We use your details to respond to you, as described in our{" "}
+                  <Link to="/privacy" className="underline underline-offset-2 hover:text-[#FF6B35]">
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
               </form>
             )}
           </motion.div>

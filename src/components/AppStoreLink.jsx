@@ -176,7 +176,7 @@ export default function AppStoreLink() {
         initial={{ opacity: 0, y: 28 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, ease: [0.45, 0, 0.2, 1] }}
-        className="relative mx-auto flex w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] sm:flex-row"
+        className="relative mx-auto flex w-full max-w-7xl flex-col overflow-hidden rounded-[2rem] sm:flex-row"
         style={{
           background:
             "radial-gradient(120% 140% at 75% 20%, #4a1c0d 0%, #241109 45%, #0d0906 100%)",
@@ -211,8 +211,8 @@ export default function AppStoreLink() {
         />
 
         {/* Left: copy + store buttons */}
-        <div className="relative z-10 flex flex-1 flex-col justify-center gap-6 px-8 py-14 sm:px-12 sm:py-16">
-          <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-[2.75rem]">
+        <div className="relative z-10 flex flex-1 flex-col justify-center gap-6 px-8 py-14 sm:px-12 sm:py-16 sm:flex-[1.15]">
+          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl md:text-[2.75rem]">
             The Whole City,
             <br />
             In Your Pocket.
@@ -243,13 +243,13 @@ export default function AppStoreLink() {
 
         {/* Right: phone mockup */}
         <div
-          className="relative z-10 flex flex-1 items-center justify-center py-14 sm:py-16"
+          className="relative z-10 flex flex-1 items-center justify-center py-14 sm:py-16 sm:flex-[0.85]"
           style={{ perspective: "1600px" }}
         >
           <div
             className="relative"
             style={{
-              width: "clamp(190px, 28%, 270px)",
+              width: "clamp(200px, 30%, 290px)",
               aspectRatio: "9 / 18",
               transform: "rotateY(-22deg) rotateX(6deg) rotateZ(5deg)",
               transformStyle: "preserve-3d",

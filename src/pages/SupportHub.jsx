@@ -120,7 +120,7 @@ export default function SupportHub() {
 
       <section className="px-6 pt-8 pb-4 sm:pt-12">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.25em] text-[#FF6B35]">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#FF6B35]">
             Support Hub
           </span>
           <h1 className="mt-4 text-3xl sm:text-4xl font-bold tracking-tight text-[#1A1006]">
@@ -225,7 +225,7 @@ export default function SupportHub() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message..."
               disabled={loading}
-              className="flex-1 rounded-full border border-[#EFE6DC] bg-[#FCFAF8] px-4 py-2.5 text-sm text-[#1A1006] outline-none transition-colors focus:border-[#FF6B35]/50 disabled:opacity-60"
+              className="flex-1 rounded-full border border-[#EFE6DC] bg-[#FCFAF8] px-4 py-2.5 text-sm text-[#1A1006] outline-none transition-colors focus:border-[#FF6B35]/50 focus:ring-2 focus:ring-[#FF6B35]/25 disabled:opacity-60"
             />
             <button
               type="submit"
