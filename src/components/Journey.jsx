@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Search, ClipboardCheck, CreditCard, UserCheck, QrCode } from "lucide-react";
+import StrikeLogo from "./StrikeLogo";
 
 const STEPS = [
   {
@@ -728,7 +729,7 @@ function JourneyDesktop() {
         <div className="sj-card-wrap">
           <div className="sj-card">
             <div className="sj-card-top">
-              <div style={{ width: 14, height: 14, borderRadius: 4, background: "#e4562a" }} />
+              <StrikeLogo className="" style={{ height: 14 }} />
               STRIKE
             </div>
             <div className="sj-card-body">

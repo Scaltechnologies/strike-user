@@ -6,7 +6,6 @@ import {
   Home,
   User,
   Menu,
-  Zap,
   Bell,
   QrCode,
   Utensils,
@@ -20,6 +19,7 @@ import {
   BatteryFull,
 } from "lucide-react";
 import { GOOGLE_PLAY_URL } from "../config/links";
+import StrikeLogo from "./StrikeLogo";
 
 const quickActions = [
   { icon: CreditCard, label: "My Card" },
@@ -60,7 +60,7 @@ function AppScreenPreview() {
         <div className="mb-[6%] flex shrink-0 items-center justify-between">
           <Menu className="h-3 w-3 text-[#1A1006]" strokeWidth={2.2} />
           <div className="flex items-center gap-[4%]">
-            <Zap className="h-3 w-3 fill-[#FF6B35] text-[#FF6B35]" strokeWidth={2} />
+            <StrikeLogo className="h-3" />
             <span className="text-[9px] font-extrabold tracking-tight text-[#FF6B35]">
               STRIKE
             </span>
